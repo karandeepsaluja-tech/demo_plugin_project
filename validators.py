@@ -4,9 +4,10 @@ Deterministic, standard-library only. Good examples of small reusable
 units the harvester can verify by running them on sample inputs.
 """
 import re
+from typing import Any
 
 
-def is_valid_email(value):
+def is_valid_email(value: Any) -> bool:
     """Return True if ``value`` looks like a basic email address.
 
     This is a pragmatic check (local@domain.tld), not full RFC validation.
@@ -22,7 +23,7 @@ def is_valid_email(value):
     return re.match(pattern, value) is not None
 
 
-def is_valid_hex_color(value):
+def is_valid_hex_color(value: Any) -> bool:
     """Return True if ``value`` is a valid 3- or 6-digit hex color.
 
     >>> is_valid_hex_color("#fff")
@@ -37,7 +38,7 @@ def is_valid_hex_color(value):
     return re.match(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$", value) is not None
 
 
-def clamp(value, low, high):
+def clamp(value: float, low: float, high: float) -> float:
     """Constrain a number to the inclusive range [low, high].
 
     >>> clamp(15, 0, 10)
@@ -52,7 +53,7 @@ def clamp(value, low, high):
     return max(low, min(value, high))
 
 
-def parse_bool(value):
+def parse_bool(value: Any) -> bool:
     """Parse a human string into a boolean.
 
     Accepts (case-insensitive) true/yes/1/on as True and
